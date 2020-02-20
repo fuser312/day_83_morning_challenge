@@ -7,8 +7,6 @@
 //  In this example, assume nodes with the same value are the exact same
 //  node objects.
 
-import 'dart:collection';
-
 class Node {
   int val;
   Node next;
@@ -16,34 +14,19 @@ class Node {
   Node(this.val);
 }
 
-int intersectingNode(Node a, Node b) {
-  var tempA = a;
-  var tempB = b;
-  while (tempA != null) {
-    while (tempB != null) {
-      if (tempB.val == tempA.val) {
-        return tempA.val;
-      } else {
-        tempB = tempB.next;
-      }
-      tempA = tempA.next;
+int intersectingNode(Node firstNode, Node secondNode) {
+  Node tempFirstNode = firstNode;
+  Node tempSecondNode = secondNode;
+  while (tempFirstNode != tempSecondNode) {
+    if (tempFirstNode != null) {
+      tempFirstNode = tempFirstNode.next;
+    } else {
+      tempFirstNode = firstNode;
+      tempSecondNode = tempSecondNode.next;
     }
   }
-  return null;
+  return tempFirstNode.val;
 }
-
-int intersectingNode2(Node x, Node y) {
-  var tempX = x;
-  var tempY = y;
-  while (tempX != tempY) {
-    tempX = tempX.next;
-
-    tempY = tempY.next;
-  }
-  return tempX.val;
-}
-
-LinkedList thisList;
 
 void main() {
   Node first = Node(3);
@@ -60,7 +43,6 @@ void main() {
   fifth.next = sixth;
   sixth.next = third;
 
-
   Node a = Node(5);
   Node b = Node(7);
   Node c = Node(6);
@@ -74,6 +56,6 @@ void main() {
 
   e.next = c;
 
-
-  print(intersectingNode2(a, e));
+  print(intersectingNode(first, fifth));
+  print(intersectingNode(a, e));
 }
