@@ -32,6 +32,26 @@ int intersectingNode(Node a, Node b) {
   return null;
 }
 
+int intersectingNode2(Node x, Node y){
+  var tempX = x;
+  var tempY = y;
+  while(tempX != tempY){
+    if(tempX != null){
+      tempX = tempX.next;
+    }
+    else{
+      tempX = y;
+    }
+    if(tempY != null){
+      tempY = tempY.next;
+    }
+    else{
+      tempY = x;
+    }
+  }
+  return tempX.val;
+}
+
 LinkedList thisList;
 
 void main() {
@@ -49,5 +69,5 @@ void main() {
   fifth.next = sixth;
   sixth.next = third;
 
-  print(intersectingNode(first, fifth));
+  print(intersectingNode2(first, fifth));
 }
