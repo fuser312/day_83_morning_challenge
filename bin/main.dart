@@ -32,22 +32,13 @@ int intersectingNode(Node a, Node b) {
   return null;
 }
 
-int intersectingNode2(Node x, Node y){
+int intersectingNode2(Node x, Node y) {
   var tempX = x;
   var tempY = y;
-  while(tempX != tempY){
-    if(tempX != null){
-      tempX = tempX.next;
-    }
-    else{
-      tempX = y;
-    }
-    if(tempY != null){
-      tempY = tempY.next;
-    }
-    else{
-      tempY = x;
-    }
+  while (tempX != tempY) {
+    tempX = tempX.next;
+
+    tempY = tempY.next;
   }
   return tempX.val;
 }
@@ -69,5 +60,20 @@ void main() {
   fifth.next = sixth;
   sixth.next = third;
 
-  print(intersectingNode2(first, fifth));
+
+  Node a = Node(5);
+  Node b = Node(7);
+  Node c = Node(6);
+  Node d = Node(4);
+
+  Node e = Node(2);
+
+  a.next = b;
+  b.next = c;
+  c.next = d;
+
+  e.next = c;
+
+
+  print(intersectingNode2(a, e));
 }
